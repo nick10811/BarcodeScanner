@@ -12,12 +12,12 @@ import UIKit
 import AVFoundation
 
 @available(iOS 8.0, *)
-protocol BarcodeScannerDelegate {
+@objc public protocol BarcodeScannerDelegate {
     func barcodeScannerController(_ scanner: BarcodeScannerViewController, didFinishPickingBarcodeContent content: String)
 }
 
 @available(iOS 8.0, *)
-class BarcodeScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
+public class BarcodeScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     var delegate: BarcodeScannerDelegate?
     
     var captureSession:AVCaptureSession?
@@ -28,7 +28,7 @@ class BarcodeScannerViewController: UIViewController, AVCaptureMetadataOutputObj
     }
 
     // MARK: - AVCaptureMetadataOutputObjectsDelegate
-    func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!) {
+    public func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!) {
         // get QR code contents
         var result:String?
         if metadataObjects != nil && metadataObjects.count > 0 {
@@ -40,7 +40,7 @@ class BarcodeScannerViewController: UIViewController, AVCaptureMetadataOutputObj
     }
     
     // MARK: - UIView
-    override func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
@@ -76,33 +76,33 @@ class BarcodeScannerViewController: UIViewController, AVCaptureMetadataOutputObj
         self.view.addSubview(tabView)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         captureSession!.startRunning()
         
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override open func viewDidAppear(_ animated: Bool) {
         UIViewController.attemptRotationToDeviceOrientation()
         captureVideoPreviewLayer!.frame = self.view.bounds
     }
 
-    override func didReceiveMemoryWarning() {
+    override open func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
+    override open func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
         super.dismiss(animated: flag, completion: completion)
         captureSession!.stopRunning()
     }
     
-    override var shouldAutorotate: Bool {
+    override open var shouldAutorotate: Bool {
         get { return false }
     }
     
     // force use portrait screen
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+    override open var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         get { return .portrait }
     }
     
