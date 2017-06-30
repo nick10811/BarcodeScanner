@@ -19,6 +19,7 @@ import AVFoundation
 @available(iOS 8.0, *)
 public class BarcodeScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     var delegate: BarcodeScannerDelegate?
+    var cancelButton_Text = "Cancel"
     
     var captureSession:AVCaptureSession?
     var captureVideoPreviewLayer:AVCaptureVideoPreviewLayer?
@@ -68,7 +69,7 @@ public class BarcodeScannerViewController: UIViewController, AVCaptureMetadataOu
         // Cancel Button
         let cancel_Button = UIButton()
         cancel_Button.frame = CGRect.init(x: 5, y: 5, width: 100, height: 50)
-        cancel_Button.setTitle("Cancel", for: .normal)
+        cancel_Button.setTitle(cancelButton_Text, for: .normal)
         cancel_Button.setTitleColor(.white, for: .normal)
         cancel_Button.addTarget(self, action: #selector(self.stopRunning), for: .touchUpInside)
         

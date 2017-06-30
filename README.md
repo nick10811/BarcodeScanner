@@ -31,6 +31,7 @@ To use this library in your project is very easy. BarcodeScanner is a ViewContro
 * Inital this object and assign delegate
 ```swift
 let barcodeViewController = BarcodeScannerViewController()
+barcodeViewController.cancelButton_Text = "取消" // customize text of cancel button, default text is "Cancel"
 barcodeViewController.delegate = self
 ```
 

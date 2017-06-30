@@ -14,15 +14,16 @@ class ViewController: UIViewController, BarcodeScannerDelegate {
     
     @IBAction func ScanBarcode(_ sender: Any) {
         let barcodeViewController = BarcodeScannerViewController()
+        barcodeViewController.cancelButton_Text = "取消" // customize text of cancel button, default text is "Cancel"
         barcodeViewController.delegate = self
         self.present(barcodeViewController, animated: true, completion: nil)
     }
     
     // MARK: - BarcodeScannerDelegate
     func barcodeScannerController(_ scanner: BarcodeScannerViewController, didFinishPickingBarcodeContent content: String) {
-        resultOfBarcode_TextView.text = content
+        resultOfBarcode_TextView.text = content // BarcodeScanner returns String let you to do what you want
         
-        scanner.dismiss(animated: true)
+        scanner.dismiss(animated: true) // remember to dismiss the Barcode ViewController
         
     }
     
