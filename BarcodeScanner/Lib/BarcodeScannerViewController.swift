@@ -46,6 +46,18 @@ public class BarcodeScannerViewController: UIViewController, AVCaptureMetadataOu
 
         // Do any additional setup after loading the view.
         let captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
+        
+        // MARK: configure camera
+        try! captureDevice!.lockForConfiguration()
+        
+        // continuous autofocus
+        if captureDevice!.isFocusModeSupported(.autoFocus) {
+            captureDevice!.focusPointOfInterest = CGPoint(x:0.5, y:0.5)
+            captureDevice!.focusMode = .continuousAutoFocus
+        }
+        
+        captureDevice!.unlockForConfiguration()
+        
         let input = try? AVCaptureDeviceInput.init(device: captureDevice)
         captureSession = AVCaptureSession()
         captureSession!.addInput(input)
