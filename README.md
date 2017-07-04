@@ -15,6 +15,7 @@ BarcodeScanner is an open source project which let you easy to get barcode conte
 * AZTEC
 
 ## Installation
+* Link AVFoundation.framework in Build Phases
 * You can download the Barcode.swift file into your project directly.
 * If you want to import to Objective-C project. You also need to configure Xcode. Please reference this [link](http://imjustaprogrammer.blogspot.tw/2017/06/importing-swift-file-to-objective-c.html).
 
@@ -45,8 +46,8 @@ self.present(barcodeViewController, animated: true, completion: nil)
 class ViewController: UIViewController, BarcodeScannerDelegate {
 ...
     // MARK: - BarcodeScannerDelegate
-    func barcodeScannerController(_ scanner: BarcodeScannerViewController, didFinishPickingBarcodeContent content: String) {
-        var result = content // BarcodeScanner returns String let you to do what you want
+    func barcodeScannerController(_ scanner: BarcodeScannerViewController, didFinishPickingBarcodeContent content: String?) {
+        var result = content ?? "" // BarcodeScanner returns String let you to do what you want
         scanner.dismiss(animated: true) // remember to dismiss the Barcode ViewController
     }
 

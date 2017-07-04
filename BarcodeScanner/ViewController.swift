@@ -20,8 +20,8 @@ class ViewController: UIViewController, BarcodeScannerDelegate {
     }
     
     // MARK: - BarcodeScannerDelegate
-    func barcodeScannerController(_ scanner: BarcodeScannerViewController, didFinishPickingBarcodeContent content: String) {
-        resultOfBarcode_TextView.text = content // BarcodeScanner returns String let you to do what you want
+    func barcodeScannerController(_ scanner: BarcodeScannerViewController, didFinishPickingBarcodeContent content: String?) {
+        resultOfBarcode_TextView.text = content ?? "" // BarcodeScanner returns String let you to do what you want
         
         scanner.dismiss(animated: true) // remember to dismiss the Barcode ViewController
         

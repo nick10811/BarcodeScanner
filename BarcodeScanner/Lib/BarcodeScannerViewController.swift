@@ -13,13 +13,13 @@ import AVFoundation
 
 @available(iOS 8.0, *)
 @objc public protocol BarcodeScannerDelegate {
-    func barcodeScannerController(_ scanner: BarcodeScannerViewController, didFinishPickingBarcodeContent content: String)
+    func barcodeScannerController(_ scanner: BarcodeScannerViewController, didFinishPickingBarcodeContent content: String?)
 }
 
 @available(iOS 8.0, *)
 public class BarcodeScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
-    var delegate: BarcodeScannerDelegate?
-    var cancelButton_Text = "Cancel"
+    open var delegate: BarcodeScannerDelegate?
+    open var cancelButton_Text = "Cancel"
     
     var captureSession:AVCaptureSession?
     var captureVideoPreviewLayer:AVCaptureVideoPreviewLayer?
@@ -36,7 +36,7 @@ public class BarcodeScannerViewController: UIViewController, AVCaptureMetadataOu
             let metadataObj = metadataObjects[0] as! AVMetadataMachineReadableCodeObject
             result = metadataObj.stringValue
         }
-        delegate?.barcodeScannerController(self, didFinishPickingBarcodeContent: result!)
+        delegate?.barcodeScannerController(self, didFinishPickingBarcodeContent: result)
         
     }
     
